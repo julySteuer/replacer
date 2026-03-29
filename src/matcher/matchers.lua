@@ -36,3 +36,31 @@ function BalancedAround(bundle) -- beginning, ending, term, name
         end
     )
 end
+
+function Or(bundle) -- firstOp, secondOp
+    return CreateMatcher(
+        function (string)
+            local firstMatch = bundle.firstOp:exec(string)
+            if firstMatch ~= nil then
+                return firstMatch
+            end
+            local secondMatch = bundle.secondOp:exec(string)
+            if secondMatch ~= nil then
+                return secondMatch
+            end
+            return nil
+        end
+    )
+end
+
+function Opt(bundle) -- op
+    return CreateMatcher(
+        function (string)
+            local match = bundle.op:exec(string)
+            if match == nil then
+                return MatchResult:from({}, "")
+            end
+            return match
+        end
+    )
+end

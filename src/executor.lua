@@ -13,7 +13,7 @@ function Executor:execute(string)
     local matchResult = nil
     for i=1, #matchers do
         local matcher = matchers[i]
-        local result = matcher.func(current_string)
+        local result = matcher:exec(current_string)
         if result == nil then
             return nil
         end

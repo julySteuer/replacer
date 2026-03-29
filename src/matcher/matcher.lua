@@ -6,3 +6,7 @@ function Matcher:fromFunction(matcherFunc)
     self.__index = self
     return matcher
 end
+
+function Matcher:exec(string)
+    return self.func(string)
+end
