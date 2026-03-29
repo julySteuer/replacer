@@ -7,7 +7,8 @@ It uses Rules that define matchers (which can also be context free) and a Replac
 lua ./src/main.lua <Exported Rules File> <Root Path of files that should be replaced> <File Matcher (glob like)>
 ```
 ## Matchers
-Here is a list of currently supported Matchers
+Here is a list of currently supported Matchers.
+Matcher can be put together with the + symbol
 ### TextMatcher
 A basic text matcher without regex capability
 ```
@@ -29,6 +30,7 @@ name(optional): The name of the match group. if nil no matcher will be in the re
 require("src.prelude")
 
 testMatcher = TextMatcher { text="test", name="test_match" }
+testMatcher2 = textMatcher + TextMatcher { text="foo", name="foo_match" } -- This is also prossible
 
 return {
     rules = {
